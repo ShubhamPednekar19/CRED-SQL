@@ -30,7 +30,7 @@ class CSchemaLinking:
         self.column_collection = column_collection
 
     @staticmethod
-    def init(http_host="127.0.0.1", http_port=8010, grpc_host="127.0.0.1", grpc_port=8012):
+    def init(http_host="127.0.0.1", http_port=18081, grpc_host="127.0.0.1", grpc_port=50052):
         CSchemaLinking.Client = weaviate.connect_to_custom(
             http_host=os.getenv("WSC_HTTP_HOST", http_host),
             http_port=os.getenv("WSC_HTTP_PORT", http_port),
@@ -236,9 +236,11 @@ class CSchemaLinking:
                 else:
                     logger.info("Total ({}columns) have been completed".format(column_length))
         if len(failed_id_list) > 0:
+            print(len(failed_id_list)) 
             return RetObj.build_partial(failed_id_list)
         else:
-            return RetObj.build_success(None)
+            print("success")
+            return True
 
     def add_schema(self, ddl: str, table_id: int):
         if ddl is None or len(ddl) <= 0:
