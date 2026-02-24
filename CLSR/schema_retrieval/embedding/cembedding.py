@@ -11,7 +11,7 @@ class CEmbedding:
 
     @staticmethod
     def init():
-        model_path = os.getenv("MODEL_PATH", "/app/models/bge-m3")
+        model_path = os.getenv("MODEL_PATH", "../models/bge-m3")
         if CEmbedding.device is None:
             # If there is a GPU, use GPU 0 by default.
             CEmbedding.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")

@@ -1,6 +1,6 @@
 import sys
 
-sys.path.append('./')
+sys.path.append('../')
 from schema_linking.cschema_linking import CSchemaLinking
 from embedding.cembedding import CEmbedding
 
@@ -74,6 +74,7 @@ def add_schemas(db_name, schema_file_path):
         ddls.append({"id": idx, "ddl": table_sql, "region":db_name})
 
     add_ret = schema_linking.add_schema_batch(ddls=ddls)
+    print(add_ret)
     assert add_ret is True
     CSchemaLinking.destroy()
 
